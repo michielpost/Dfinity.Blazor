@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+       - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
       - name: Deploy canisters
         id: deploy
         uses: fleekhq/ic-deploy-action@v2

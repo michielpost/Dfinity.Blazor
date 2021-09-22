@@ -1,6 +1,8 @@
 # Dfinity.Blazor
 Blazor library to work with Dfinity Internet Computer
 
+Deployed to https://syisf-7qaaa-aaaah-aauda-cai.ic0.app/
+
 
 ## Demo
 
