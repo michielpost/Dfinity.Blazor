@@ -28,7 +28,7 @@ export const renderLoggedIn = (
   (document.getElementById("whoamiButton") as HTMLButtonElement).onclick =
     async () => {
       try {
-        const response = await actor.storage();
+        const response = await actor.lookup('a');
         console.log(response);
         (document.getElementById("whoami") as HTMLInputElement).value =
           response.toString();

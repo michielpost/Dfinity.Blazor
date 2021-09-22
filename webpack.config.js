@@ -73,6 +73,8 @@ module.exports = {
   output: {
     filename: "index.js",
     path: path.join(__dirname, "dist", "www"),
+    libraryTarget: 'var',
+    library: 'EntryPoint'
   },
 
   // Depending in the language or framework you are using for

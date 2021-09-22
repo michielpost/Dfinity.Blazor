@@ -49,4 +49,5 @@ Deployed to https://syisf-7qaaa-aaaah-aauda-cai.ic0.app/
 
 ### Inspiration
 - https://github.com/krpeacock/auth-client-demo/
+- https://github.com/dfinity/examples/tree/master/motoko/phone-book
 - https://github.com/dfinity/examples/tree/master/motoko/superheroes

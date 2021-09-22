@@ -1,4 +1,10 @@
 export const idlFactory = ({ IDL }) => {
-  return IDL.Service({ 'storage' : IDL.Func([], [IDL.Principal], []) });
+  const Name = IDL.Text;
+  const Phone = IDL.Text;
+  const Entry = IDL.Record({ 'desc' : IDL.Text, 'phone' : Phone });
+  return IDL.Service({
+    'insert' : IDL.Func([Name, Entry], [], []),
+    'lookup' : IDL.Func([Name], [IDL.Opt(Entry)], ['query']),
+  });
 };
 export const init = ({ IDL }) => { return []; };

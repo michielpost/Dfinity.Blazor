@@ -15,6 +15,26 @@
       <h2>You are not authenticated</h2>
       <p>To log in, click this button!</p>
       <button type="button" id="loginButton">Log in</button>
+
+
+    </div>
+
+    <hr>
+
+    <h2>Buttons</h2>
+    <div>
+      <script>
+        window.onload = function () {
+          EntryPoint.test();
+        };
+      </script>
+
+      <button onclick="EntryPoint.test()">test</button>
+      <button onclick="EntryPoint.write()">write data</button>
+      <button onclick="EntryPoint.get()">get data</button>
+
+      <button onclick="EntryPoint.writeAccount()">write data for user</button>
+      <button onclick="EntryPoint.getAccount()">get data for user</button>
     </div>
 
   </body>
