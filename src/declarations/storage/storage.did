@@ -1,0 +1,3 @@
+service : {
+  storage: () -> (principal);
+}
