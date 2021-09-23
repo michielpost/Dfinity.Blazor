@@ -48,9 +48,8 @@ export function test() {
 
 export async function write() {
   let name = 'a';
-  let desc = 'b';
-  let phone = 'c';
-  await storage.insert(name, { desc, phone });
+  let text = 'b';
+  await storage.insert(name, text);
 }
 
 export async function get() {
@@ -60,9 +59,8 @@ export async function get() {
 
 export async function writeUser() {
   let name = 'a';
-  let desc = 'buser';
-  let phone = 'cuser';
-  await storage_actor.insert(name, { desc, phone });
+  let text = 'buser';
+  await storage_actor.insert(name, text);
 }
 
 export async function getUser() {

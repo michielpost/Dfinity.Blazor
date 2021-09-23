@@ -1,10 +1,9 @@
 export const idlFactory = ({ IDL }) => {
   const Name = IDL.Text;
-  const Phone = IDL.Text;
-  const Entry = IDL.Record({ 'desc' : IDL.Text, 'phone' : Phone });
+  const Data = IDL.Text;
   const DataList = IDL.Service({
-    'insert' : IDL.Func([Name, Entry], [], []),
-    'lookup' : IDL.Func([Name], [IDL.Opt(Entry)], []),
+    'insert' : IDL.Func([Name, Data], [], []),
+    'lookup' : IDL.Func([Name], [IDL.Opt(Data)], []),
     'whoami' : IDL.Func([], [IDL.Text], []),
   });
   return DataList;

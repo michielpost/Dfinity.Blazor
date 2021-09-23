@@ -7,21 +7,16 @@ shared(msg) actor class DataList() {
   let owner = msg.caller;
 
     type Name = Text;
-    type Phone = Text;
+    type Data = Text;
 
-  type Entry = {
-    desc: Text;
-    phone: Phone;
-  };
+  let phonebook = Map.HashMap<Name, Data>(0, Text.equal, Text.hash);
 
-  let phonebook = Map.HashMap<Name, Entry>(0, Text.equal, Text.hash);
-
-  public shared(msg) func insert(name : Name, entry : Entry): async () {
+  public shared(msg) func insert(name : Name, entry : Data): async () {
     let userId = Principal.toText(msg.caller);
      phonebook.put(userId#name, entry);
   };
 
-  public shared(msg) func lookup(name : Name) : async ?Entry {
+  public shared(msg) func lookup(name : Name) : async ?Data {
     let userId = Principal.toText(msg.caller);
     phonebook.get(userId#name)
   };

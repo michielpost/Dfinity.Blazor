@@ -1,14 +1,9 @@
-type Phone = text;
 type Name = text;
-type Entry = 
- record {
-   desc: text;
-   phone: Phone;
- };
 type DataList = 
  service {
-   insert: (Name, Entry) -> ();
-   lookup: (Name) -> (opt Entry);
+   insert: (Name, Data) -> ();
+   lookup: (Name) -> (opt Data);
    whoami: () -> (text);
  };
+type Data = text;
 service : () -> DataList
