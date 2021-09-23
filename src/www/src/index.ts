@@ -1,9 +1,12 @@
 import { AuthClient } from "@dfinity/auth-client";
-import { renderLoggedIn } from "./views/loggedIn";
 import { canisterId, createActor, storage } from "../../declarations/storage";
+import { ActorSubclass } from "@dfinity/agent";
+import { _SERVICE } from "../../declarations/storage/storage.did";
+
+let authClient: AuthClient;
 
 const init = async () => {
-  const authClient = await AuthClient.create();
+  authClient = await AuthClient.create();
   if (await authClient.isAuthenticated()) {
     handleAuthenticated(authClient);
   }
@@ -24,15 +27,17 @@ const init = async () => {
   };
 };
 
+let storage_actor: ActorSubclass<_SERVICE>;
+
 async function handleAuthenticated(authClient: AuthClient) {
   const identity = await authClient.getIdentity();
-  const storage_actor = createActor(canisterId as string, {
+  storage_actor = createActor(canisterId as string, {
     agentOptions: {
       identity,
     },
   });
 
-  renderLoggedIn(storage_actor, authClient);
+  console.log('login!');
 }
 
 init();
@@ -51,4 +56,26 @@ export async function write() {
 export async function get() {
   let d = await storage.lookup('a');
   console.log(d);
+}
+
+export async function writeUser() {
+  let name = 'a';
+  let desc = 'buser';
+  let phone = 'cuser';
+  await storage_actor.insert(name, { desc, phone });
+}
+
+export async function getUser() {
+  let d = await storage_actor.lookup('a');
+  console.log(d);
+}
+
+export async function logout() {
+  await authClient.logout();      
+  console.log('logout');
+}
+
+export async function whoami() {
+  var r = await storage.whoami();      
+  console.log(r);
 }

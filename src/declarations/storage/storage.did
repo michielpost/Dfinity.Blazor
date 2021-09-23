@@ -5,7 +5,10 @@ type Entry =
    desc: text;
    phone: Phone;
  };
-service : {
-  insert: (Name, Entry) -> ();
-  lookup: (Name) -> (opt Entry) query;
-}
+type DataList = 
+ service {
+   insert: (Name, Entry) -> ();
+   lookup: (Name) -> (opt Entry);
+   whoami: () -> (text);
+ };
+service : () -> DataList

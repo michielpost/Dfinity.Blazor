@@ -1,10 +1,13 @@
 import Map "mo:base/HashMap";
 import Text "mo:base/Text";
+import Principal "mo:base/Principal";
 
-actor DataList {
+shared(msg) actor class DataList() {
 
-  type Name = Text;
-  type Phone = Text;
+  let owner = msg.caller;
+
+    type Name = Text;
+    type Phone = Text;
 
   type Entry = {
     desc: Text;
@@ -13,11 +16,21 @@ actor DataList {
 
   let phonebook = Map.HashMap<Name, Entry>(0, Text.equal, Text.hash);
 
-  public func insert(name : Name, entry : Entry): async () {
-    phonebook.put(name, entry);
+  public shared(msg) func insert(name : Name, entry : Entry): async () {
+    let userId = Principal.toText(msg.caller);
+     phonebook.put(userId#name, entry);
   };
 
-  public query func lookup(name : Name) : async ?Entry {
-    phonebook.get(name)
+  public shared(msg) func lookup(name : Name) : async ?Entry {
+    let userId = Principal.toText(msg.caller);
+    phonebook.get(userId#name)
   };
-};
+
+  // Return the principal identifier of the caller of this method.
+  public shared (msg) func whoami() : async Text {
+    return Principal.toText(msg.caller);
+  };
+
+
+}
+
