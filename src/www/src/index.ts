@@ -10,21 +10,6 @@ const init = async () => {
   if (await authClient.isAuthenticated()) {
     handleAuthenticated(authClient);
   }
-
-  const loginButton = document.getElementById(
-    "loginButton"
-  ) as HTMLButtonElement;
-  loginButton.onclick = async () => {
-    await authClient.login({
-      onSuccess: async () => {
-        handleAuthenticated(authClient);
-      },
-      identityProvider:
-        process.env.DFX_NETWORK === "ic"
-          ? "https://identity.ic0.app/#authorize"
-          : process.env.LOCAL_II_CANISTER,
-    });
-  };
 };
 
 let storage_actor: ActorSubclass<_SERVICE>;
@@ -44,6 +29,18 @@ init();
 
 export function test() {
   console.log('test');
+}
+
+export async function login() {
+  await authClient.login({
+    onSuccess: async () => {
+      handleAuthenticated(authClient);
+    },
+    identityProvider:
+      process.env.DFX_NETWORK === "ic"
+        ? "https://identity.ic0.app/#authorize"
+        : process.env.LOCAL_II_CANISTER,
+  });
 }
 
 export async function write() {
