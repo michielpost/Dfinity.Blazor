@@ -10,14 +10,6 @@
     <main id="pageContent"></main>
 
     <h1>test</h1>
-    <div class="container">
-      <h1>Internet Identity Client</h1>
-      <h2>You are not authenticated</h2>
-      <p>To log in, click this button!</p>
-      <button type="button" id="loginButton">Log in</button>
-
-
-    </div>
 
     <hr>
 
@@ -30,11 +22,14 @@
       </script>
 
       <button onclick="EntryPoint.test()">test</button>
-      <button onclick="EntryPoint.write()">write data</button>
-      <button onclick="EntryPoint.get()">get data</button>
+      <button onclick="EntryPoint.setValue('key', 'test')">write data</button>
+      <button onclick="EntryPoint.getValue('key')">get data</button>
+      <br>
 
-      <button onclick="EntryPoint.writeUser()">write data for user</button>
-      <button onclick="EntryPoint.getUser()">get data for user</button>
+      <button onclick="EntryPoint.isLoggedIn()">check login</button>
+      <button onclick="EntryPoint.login()">login</button>
+      <button onclick="EntryPoint.setValueForUser('key', 'test user data')">write data for user</button>
+      <button onclick="EntryPoint.getValueForUser('key')">get data for user</button>
       <button onclick="EntryPoint.logout()">logout</button>
       <button onclick="EntryPoint.whoami()">whoami</button>
 

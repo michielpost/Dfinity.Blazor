@@ -43,30 +43,36 @@ export async function login() {
   });
 }
 
-export async function write() {
-  let name = 'a';
-  let text = 'b';
-  await storage.insert(name, text);
+export async function setValue(key, value) {
+  await storage.insert(key, value);
 }
 
-export async function get() {
-  let d = await storage.lookup('a');
-  console.log(d);
+export async function getValue(key) {
+  let v = await storage.lookup(key);
+  console.log(v);
+  return v;
 }
 
-export async function writeUser() {
-  let name = 'a';
-  let text = 'buser';
-  await storage_actor.insert(name, text);
+export async function setValueForUser(key, value) {
+  await storage_actor.insert(key, value);
 }
 
-export async function getUser() {
-  let d = await storage_actor.lookup('a');
-  console.log(d);
+export async function getValueForUser(key) {
+  let v = await storage_actor.lookup(key);
+  console.log(v);
+  return v;
+}
+
+export function isLoggedIn()
+{
+  var loggedIn = storage_actor != null;
+  console.log(loggedIn);
+  return loggedIn;
 }
 
 export async function logout() {
-  await authClient.logout();      
+  await authClient.logout();   
+  storage_actor = null!;   
   console.log('logout');
 }
 
