@@ -21254,7 +21254,7 @@ var exports = __webpack_exports__;
   \******************************/
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.whoami = exports.logout = exports.getUser = exports.writeUser = exports.get = exports.write = exports.login = exports.test = void 0;
+exports.whoami = exports.logout = exports.isLoggedIn = exports.getValueForUser = exports.setValueForUser = exports.getValue = exports.setValue = exports.login = exports.test = void 0;
 const auth_client_1 = __webpack_require__(/*! @dfinity/auth-client */ "./node_modules/@dfinity/auth-client/lib/esm/index.js");
 const storage_1 = __webpack_require__(/*! ../../declarations/storage */ "./src/declarations/storage/index.js");
 let authClient;
@@ -21290,30 +21290,35 @@ async function login() {
     });
 }
 exports.login = login;
-async function write() {
-    let name = 'a';
-    let text = 'b';
-    await storage_1.storage.insert(name, text);
+async function setValue(key, value) {
+    await storage_1.storage.insert(key, value);
 }
-exports.write = write;
-async function get() {
-    let d = await storage_1.storage.lookup('a');
-    console.log(d);
+exports.setValue = setValue;
+async function getValue(key) {
+    let v = await storage_1.storage.lookup(key);
+    console.log(v);
+    return v;
 }
-exports.get = get;
-async function writeUser() {
-    let name = 'a';
-    let text = 'buser';
-    await storage_actor.insert(name, text);
+exports.getValue = getValue;
+async function setValueForUser(key, value) {
+    await storage_actor.insert(key, value);
 }
-exports.writeUser = writeUser;
-async function getUser() {
-    let d = await storage_actor.lookup('a');
-    console.log(d);
+exports.setValueForUser = setValueForUser;
+async function getValueForUser(key) {
+    let v = await storage_actor.lookup(key);
+    console.log(v);
+    return v;
 }
-exports.getUser = getUser;
+exports.getValueForUser = getValueForUser;
+function isLoggedIn() {
+    var loggedIn = storage_actor != null;
+    console.log(loggedIn);
+    return loggedIn;
+}
+exports.isLoggedIn = isLoggedIn;
 async function logout() {
     await authClient.logout();
+    storage_actor = null;
     console.log('logout');
 }
 exports.logout = logout;

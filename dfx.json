@@ -10,7 +10,7 @@
         "entrypoint": "src/www/src/index.html"
       },
       "source": [
-        "dist/www/"
+        "src/Dfinity.Blazor.SampleApp/bin/Release/net5.0/browser-wasm/publish/wwwroot"
       ],
       "type": "assets"
     }

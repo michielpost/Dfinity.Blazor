@@ -47,6 +47,44 @@ namespace Dfinity.Blazor
             }
         }
 
+        public ValueTask SetValue(string key, string value)
+        {
+            return jsRuntime.InvokeVoidAsync("EntryPoint.setValue", key, value);
+        }
+
+        public async ValueTask<string?> GetValue(string key)
+        {
+            var result = await jsRuntime.InvokeAsync<string[]>("EntryPoint.getValue", key);
+            return result.FirstOrDefault();
+        }
+
+        public ValueTask SetValueForUser(string key, string value)
+        {
+            return jsRuntime.InvokeVoidAsync("EntryPoint.setValueForUser", key, value);
+        }
+
+        public async ValueTask<string?> GetValueForUser(string key)
+        {
+            var result = await jsRuntime.InvokeAsync<string[]>("EntryPoint.getValueForUser", key);
+            return result.FirstOrDefault();
+        }
+
+
+        public ValueTask<bool> IsLoggedIn()
+        {
+            return jsRuntime.InvokeAsync<bool>("EntryPoint.isLoggedIn");
+        }
+
+        public ValueTask Login()
+        {
+            return jsRuntime.InvokeVoidAsync("EntryPoint.login");
+        }
+
+        public ValueTask Logout()
+        {
+            return jsRuntime.InvokeVoidAsync("EntryPoint.logout");
+        }
+
         //public async ValueTask<bool> HasMetaMask()
         //{
         //    var module = await moduleTask.Value;
@@ -98,17 +136,17 @@ namespace Dfinity.Blazor
         //        throw;
         //    }
         //}
-       
-      
 
-        [JSInvokable()]
-        public static async Task IsLoggedIn()
-        {
-            if (IsLoggedInEvent != null)
-            {
-                await IsLoggedInEvent.Invoke(true);
-            }
-        }
+
+
+        //[JSInvokable()]
+        //public static async Task IsLoggedIn()
+        //{
+        //    if (IsLoggedInEvent != null)
+        //    {
+        //        await IsLoggedInEvent.Invoke(true);
+        //    }
+        //}
 
         public async ValueTask DisposeAsync()
         {
