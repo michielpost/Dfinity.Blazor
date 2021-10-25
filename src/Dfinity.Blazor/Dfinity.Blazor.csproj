@@ -14,7 +14,7 @@
     <RepositoryUrl>https://github.com/michielpost/Dfinity.Blazor</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
     <PackageTags>dfinity internet computer icp blockchain web3 blazor</PackageTags>
-    <Description>Dfinity Blazor Extension</Description>
+    <Description>Dfinity Blazor Extension to be able to integrate Internet Identity and communicate with canisters.</Description>
   </PropertyGroup>
 
   <ItemGroup>
