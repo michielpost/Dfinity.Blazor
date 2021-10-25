@@ -4,12 +4,20 @@ import { ActorSubclass } from "@dfinity/agent";
 import { _SERVICE } from "../../declarations/storage/storage.did";
 
 let authClient: AuthClient;
+let storage_noauth: ActorSubclass<_SERVICE>;
+
 
 const init = async () => {
   authClient = await AuthClient.create();
   if (await authClient.isAuthenticated()) {
     handleAuthenticated(authClient);
   }
+
+  storage_noauth = createActor(canisterId as string, {
+    agentOptions: {
+      host: 'https://ic0.app',
+    },
+  });
 };
 
 let storage_actor: ActorSubclass<_SERVICE>;
@@ -18,6 +26,7 @@ async function handleAuthenticated(authClient: AuthClient) {
   const identity = await authClient.getIdentity();
   storage_actor = createActor(canisterId as string, {
     agentOptions: {
+      host: 'https://ic0.app',
       identity,
     },
   });
@@ -44,11 +53,11 @@ export async function login() {
 }
 
 export async function setValue(key, value) {
-  await storage.insert(key, value);
+  await storage_noauth.insert(key, value);
 }
 
 export async function getValue(key) {
-  let v = await storage.lookup(key);
+  let v = await storage_noauth.lookup(key);
   console.log(v);
   return v;
 }
@@ -77,6 +86,7 @@ export async function logout() {
 }
 
 export async function whoami() {
-  var r = await storage.whoami();      
+  var r = await storage_noauth.whoami();      
   console.log(r);
+  return r;
 }
