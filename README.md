@@ -3,6 +3,8 @@ Blazor library to work with Dfinity Internet Computer. Use this library to easil
 
 Deployed to https://syisf-7qaaa-aaaah-aauda-cai.ic0.app/
 
+Available on NuGet: https://www.nuget.org/packages/Dfinity.Blazor/
+
 ## Features
 - Login with Internet Identity
 - Get Current Internet Identity
@@ -60,6 +62,30 @@ dotnet publish src/Dfinity.Blazor.SampleApp -c Release
 
 9. Open the URL in your web browser.
 
+
+## How to use this in your own app
+Example implementation can be found at https://github.com/michielpost/SkyDocs/tree/feature/dfinity
+
+Steps:
+- Install this library from NuGet [Dfinity.Blazor](https://www.nuget.org/packages/Dfinity.Blazor/)
+- Create a folder for your storage canister and add Main.mo
+- Add your storage canister to dfx.json
+
+```json
+ "storage": {
+      "main": "src/storage/main.mo",
+      "type": "motoko"
+    },
+```
+
+- Add index.js and index.html to your www/asset canister
+- Add package.json to the root of your project
+- Follow the steps to run the demo to build your own project
+- Make sure the compiled/minified index.js end up in the `wwwroot` of your Blazor app.
+- Include the js file in your html:
+```html
+ <script defer src="index.js"></script>
+```
 
 ### Inspiration
 - https://github.com/krpeacock/auth-client-demo/
