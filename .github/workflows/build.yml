@@ -14,4 +14,4 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Build with dotnet
-      run: dotnet build src/Dfinity.Blazor.SampleApp.sln --configuration Release
+      run: dotnet build src/Dfinity.Blazor.sln --configuration Release
