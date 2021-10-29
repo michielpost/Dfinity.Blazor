@@ -22,6 +22,7 @@ namespace Dfinity.Blazor.SampleApp.Pages
 
         public async Task WriteData()
         {
+            WriteOutput("Writing data to IC...");
             string value = DateTimeOffset.UtcNow.ToString();
             await DfinityService.SetValue("time", value);
             WriteOutput($"Written value: {value}");
@@ -30,6 +31,7 @@ namespace Dfinity.Blazor.SampleApp.Pages
         
         public async Task GetData()
         {
+            WriteOutput("Getting data from IC...");
             string? value = await DfinityService.GetValue("time");
             Console.WriteLine("Value: " + value);
             WriteOutput($"Get value: {value}");
@@ -59,16 +61,24 @@ namespace Dfinity.Blazor.SampleApp.Pages
 
         }
 
-
         public async Task WriteDataForUser()
         {
+            if (!(await DfinityService.IsLoggedIn()))
+                WriteOutput("WARNING: this will fail, user is not logged in.");
+
             string value = DateTimeOffset.UtcNow.ToString();
+           
+            WriteOutput("Writing data to IC...");
             await DfinityService.SetValueForUser("time", value);
             WriteOutput($"Write value for current user: {value}");
 
         }
         public async Task GetDataForUser()
         {
+            if (!(await DfinityService.IsLoggedIn()))
+                WriteOutput("WARNING: this will fail, user is not logged in.");
+
+            WriteOutput("Getting data from IC...");
             var value = await DfinityService.GetValueForUser("time");
             Console.WriteLine("Uservalue: " + value);
             WriteOutput($"Get value for current user: {value}");
