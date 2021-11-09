@@ -8,7 +8,7 @@
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <Authors>Michiel Post</Authors>
-    <Version>0.2.0</Version>
+    <Version>0.2.1</Version>
     <Product>Dfinity.Blazor</Product>
     <PackageProjectUrl>https://github.com/michielpost/Dfinity.Blazor</PackageProjectUrl>
     <RepositoryUrl>https://github.com/michielpost/Dfinity.Blazor</RepositoryUrl>
