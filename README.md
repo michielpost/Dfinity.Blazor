@@ -5,6 +5,8 @@ Deployed to https://syisf-7qaaa-aaaah-aauda-cai.ic0.app/
 
 Available on NuGet: https://www.nuget.org/packages/Dfinity.Blazor/
 
+<img src="ic-badge-powered-by_bg-white.svg">
+
 ## Features
 - Login with Internet Identity
 - Get Current Internet Identity
